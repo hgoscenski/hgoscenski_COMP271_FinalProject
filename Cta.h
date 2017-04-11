@@ -11,13 +11,14 @@
 
 class Cta {
 public:
-    std::vector static getTransferLines(Station transStation, std::vector transferStations);
-    std::vector getLines();
+    std::vector<Line> static getTransferLines(Station transStation, std::vector<Station> transferStations);
+    std::vector<Line> getLines();
     Cta();
 
 private:
-    std::vector lines;
-    std::vector transferLines;
+    void addLine(Line line);
+    std::vector<Line> lines;
+    std::vector<Station> transferLines;
 
 };
 

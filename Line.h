@@ -15,10 +15,11 @@ public:
     std::string getLineName();
     void addLineStation(Station lineStation);
     bool isEqual(Line otherLine);
+    Line(std::string lineName);
 
 private:
     std::string lineName;
-    std::vector lineStations;
+    std::vector<Station> lineStations;
 };
 
 

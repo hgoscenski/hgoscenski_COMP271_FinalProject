@@ -4,16 +4,20 @@
 
 #include "Cta.h"
 
-std::vector Cta::getLines() {
+std::vector<Line> Cta::getLines() {
     return lines;
 }
 
-std::vector static Cta::getTransferLines(Station transStation, std::vector transferStations) {
-    std::vector temp;
+std::vector<Station> static Cta::getTransferLines(Station transStation, std::vector transferStations) {
+    std::vector<Station> temp;
     for(Station s : transferStations){
         if(s.getStationName() == transStation.getStationName()){
             temp.push_back(s);
         }
         return temp;
     }
+}
+
+void Cta::addLine(Line line) {
+    lines.push_back(line);
 }
