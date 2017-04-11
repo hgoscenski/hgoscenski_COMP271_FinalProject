@@ -15,17 +15,23 @@ public:
     bool isTransferStation();
     bool isTerminalStation();
     std::string getStationName();
+    Line getLine();
     void addPreviousStation(Station prior, Line lineName);
     Station getNextStation();
     Station getNextStation(Line lineName);
     Station getPreviousStation();
     Station getPreviousStation(Line lineName);
+    Station(std::string name, Line line, bool isTransfer, bool isTerminal);
+    void setLine(Line lineName);
+    Station();
+
 private:
     Station nextStation;
     Station previousStation;
     std::string stationName;
     bool isTransfer;
     bool isTerminal;
+    Line lineMember;
 };
 
 

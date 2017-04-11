@@ -7,12 +7,18 @@
 
 
 #include <string>
+#include <vector>
 #include "Station.h"
 
 class Line {
 public:
     std::string getLineName();
-    std::vector addLineStation(Station lineStation);
+    void addLineStation(Station lineStation);
+    bool isEqual(Line otherLine);
+
+private:
+    std::string lineName;
+    std::vector lineStations;
 };
 
 
