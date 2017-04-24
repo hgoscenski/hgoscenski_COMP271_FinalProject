@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include "Cta.h"
-#include <vector>
 
 // Each node can have 1 or more connections, each must have at least one out connection-- i.e. terminating stops have at least one upstream from them.
 
@@ -18,26 +17,42 @@ int main() {
     Line yellowLine = Line("yellow");
 
     std::vector<Line> lines = {blueLine,brownLine,greenLine,orangeLine,pinkLine,purpleLine,redLine,yellowLine};
+//    std::cout << lines.at(0).getLineName()<<std::endl;
+
 
     std::ifstream infile;
     std::string line;
-    int counter = 0;
+
+    int lineCounter = 0;
     for(std::string s:lineFiles){
-        int terminalCounter;
-        infile.open("../lines/"+s);
-        long line_count = std::count(
-                std::istream_iterator<char>(infile),
-                std::istream_iterator<char>(),
-                '\n');
-        while(getline(infile, line)){
-            if(s.find("(T)") != std::string::npos){
-            Station(s,lines.at(counter),true,(terminalCounter==line_count || terminalCounter ==0));
-            }
-            else{
-                Station(s,lines.at(counter),false,(terminalCounter==line_count || terminalCounter ==0));
-            }
+
+        int terminalCounter = 0;
+        std::string currFile = "../lines/" + s;
+//        std::cout<<currFile<<std::endl;
+        infile.open(currFile);
+
+//        long line_count = std::count(
+//                std::istream_iterator<char>(infile),
+//                std::istream_iterator<char>(),
+//                '\n');
+        while(getline(infile, line))
+        {
+//            std::cout<<line<<std::endl;
+//            long line_count = 10;
+//            std::cout << line << std::endl;
+//            blueLine.addLineStation(Station(line, line.find("(T)") != std::string::npos,
+//                                                      (terminalCounter == line_count || terminalCounter == 0)));
+//            std::cout<<lines[lineCounter].getLineName()<<std::endl;
+            lines[lineCounter].addLineStation(Station(line,false,false));
         }
+        lineCounter+=1;
+        infile.close();
+        infile.clear();
     }
+    blueLine.printLineStations();
+//    std::cout<<blueLine.printLineStations()<<std::endl;
+
+//    std::cout<<blueLine.printLineStations()<<std::endl;
 //    std::ifstream infile("/Users/hgoscenski/ClionProjects/hgoscenski-COMP271-FinalProject/lines/blue");
 //    std::ifstream lineInput;
 //    std::string line;
