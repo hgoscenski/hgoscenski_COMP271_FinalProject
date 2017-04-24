@@ -8,10 +8,11 @@
 #include <array>
 #include <vector>
 #include "Station.h"
+#include "Line.h"
 
 class Cta {
 public:
-    std::vector<Line> static getTransferLines(Station transStation, std::vector<Station> transferStations);
+    std::vector<Station> static getTransferLines(Station transStation, std::vector<Station> transferStations);
     std::vector<Line> getLines();
     Cta();
 

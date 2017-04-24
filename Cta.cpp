@@ -8,7 +8,7 @@ std::vector<Line> Cta::getLines() {
     return lines;
 }
 
-std::vector<Station> static Cta::getTransferLines(Station transStation, std::vector transferStations) {
+std::vector<Station> Cta::getTransferLines(Station transStation, std::vector<Station> transferStations) {
     std::vector<Station> temp;
     for(Station s : transferStations){
         if(s.getStationName() == transStation.getStationName()){
@@ -16,6 +16,11 @@ std::vector<Station> static Cta::getTransferLines(Station transStation, std::vec
         }
         return temp;
     }
+    return temp;
+}
+
+Cta::Cta(){
+    // DO NOTHING!
 }
 
 void Cta::addLine(Line line) {
