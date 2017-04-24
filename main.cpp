@@ -35,6 +35,8 @@ int main() {
 //                std::istream_iterator<char>(infile),
 //                std::istream_iterator<char>(),
 //                '\n');
+//        lines[lineCounter].addLineStation(Station("Howard", true, true));
+
         while(getline(infile, line))
         {
 //            std::cout<<line<<std::endl;
@@ -43,13 +45,17 @@ int main() {
 //            blueLine.addLineStation(Station(line, line.find("(T)") != std::string::npos,
 //                                                      (terminalCounter == line_count || terminalCounter == 0)));
 //            std::cout<<lines[lineCounter].getLineName()<<std::endl;
-            lines[lineCounter].addLineStation(Station(line,false,false));
+            Station tempStation = Station(line,false,false);
+            lines[lineCounter].addLineStation(tempStation);
+
         }
         lineCounter+=1;
         infile.close();
         infile.clear();
     }
+
     blueLine.printLineStations();
+
 //    std::cout<<blueLine.printLineStations()<<std::endl;
 
 //    std::cout<<blueLine.printLineStations()<<std::endl;

@@ -5,7 +5,6 @@
 #ifndef HGOSCENSKI_COMP271_FINALPROJECT_LINE_H
 #define HGOSCENSKI_COMP271_FINALPROJECT_LINE_H
 
-
 #include <string>
 #include <vector>
 #include <list>
@@ -21,6 +20,7 @@ public:
 
 private:
     std::string lineName;
+    std::vector<Station>* pointer;
     std::vector<Station> lineStations;
     std::list<Station> lineStationsOrdered;
 };
