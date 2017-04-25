@@ -11,19 +11,17 @@ Line::Line(std::string name) {
     lineName = name;
 }
 
+
+
 bool Line::isEqual(Line otherLine) {
     return lineName == otherLine.getLineName();
 }
 
 void Line::addLineStation(Station stationName) {
     lineStations.push_back(stationName);
-//    pointer = &lineStations;
-//    std::cout<<pointer<<std::endl;
-//    Station tempBack = lineStations.back();
-//    std::cout<<tempBack.getStationName()<<std::endl;
-//    Station tempStation = stationName;
-//    std::cout<<tempStation.getStationName()<<"////"<<std::endl;
 }
+
+
 
 std::string Line::getLineName() {
     return lineName;
@@ -31,38 +29,19 @@ std::string Line::getLineName() {
 
 std::string Line::printLineStations() {
     int counter = 0;
-//    std::cout<<this->getLineName()<<std::endl;
-//    std::cout<<this->lineStations.back().getStationName()<<std::endl;
-//    std::cout<<lineStations.empty()<<std::endl;
-//    std::cout<<this->lineStations.empty()<<std::endl;
+    if(this->lineStations.empty()){
+        return "????????????????????????????????????????";
+    }
     for(std::vector<Station>::iterator it = lineStations.begin(); it != lineStations.end(); ++it) {
-
-        std::cout<<counter<<std::endl;
         Station tempStation = *it;
         std::string stringThing = tempStation.getStationName();
-        std::cout<< stringThing <<std::endl;
+        std::cout<< stringThing << " is a terminal station: "<< tempStation.isTerminalStation() << " is a transfer station: "<< tempStation.isTransferStation() <<std::endl;
         counter++;
 
     }
-    return "WHY?!";
-//    std::string temp = "";
-//    for(Station s:lineStations){
-//
-//        std::cout<<s.isTerminalStation()<<std::endl;
-//
-//        temp+= s.getStationName()+ "-->";
-//    }
-//    std::cout<<temp<<std::endl;
-//    return "\n";
+    return "--------------------------------------------------";
+}
 
-
-//    std::ostringstream tempString;
-//    std::string temp;
-//    for(Station s : lineStations) {
-//        std::cout<<"1"<<std::endl;
-//        tempString << (s.getStationName()) << "-->";
-//        temp = tempString.str();
-//        std::cout << temp << std::endl;
-//    }
-//    return temp;
+Line::Line(){
+//    do nothing
 }

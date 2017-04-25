@@ -2,6 +2,8 @@
 // Created by hgoscenski on 4/7/17.
 //
 
+#include <iostream>
+#include <set>
 #include "Cta.h"
 
 std::vector<Line> Cta::getLines() {
@@ -19,10 +21,32 @@ std::vector<Station> Cta::getTransferLines(Station transStation, std::vector<Sta
     return temp;
 }
 
-Cta::Cta(){
-    // DO NOTHING!
+bool Cta::findLineStation(std::string searchingStationName){
+    return allStationsSet.find(searchingStationName) != allStationsSet.end();
+}
+
+void Cta::setAllStations(std::set<std::string> stationSet){
+    for(std::set<std::string>::iterator it = stationSet.begin(); it != stationSet.end(); ++it) {
+        allStationsSet.insert(*it);
+    }
+}
+
+Cta::Cta(std::vector<Line> lineVector){
+    for(std::vector<Line>::iterator it = lineVector.begin(); it != lineVector.end(); ++it) {
+        this->addLine(*it);
+    }
 }
 
 void Cta::addLine(Line line) {
     lines.push_back(line);
+}
+
+std::string Cta::printLines(){
+    for(std::vector<Line>::iterator it = lines.begin(); it != lines.end(); ++it) {
+        std::cout<< it->getLineName()<<"\n"<< it->printLineStations()<< std::endl;
+    }
+}
+
+Cta::Cta(){
+    // DO NOTHING!
 }

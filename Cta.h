@@ -7,20 +7,25 @@
 
 #include <array>
 #include <vector>
+#include <set>
 #include "Station.h"
 #include "Line.h"
 
 class Cta {
 public:
+    Cta(std::vector<Line, std::allocator<Line>> lineVector);
     std::vector<Station> static getTransferLines(Station transStation, std::vector<Station> transferStations);
+    void setAllStations(std::set<std::string> stationSet);
     std::vector<Line> getLines();
+    std::string printLines();
     Cta();
+    bool findLineStation(std::string searchingStationName);
 
 private:
     void addLine(Line line);
     std::vector<Line> lines;
     std::vector<Station> transferLines;
-
+    std::set<std::string> allStationsSet;
 };
 
 

@@ -1,88 +1,72 @@
 #include <iostream>
 #include <fstream>
+#include <set>
 #include "Cta.h"
 
-// Each node can have 1 or more connections, each must have at least one out connection-- i.e. terminating stops have at least one upstream from them.
-
 int main() {
-    std::vector<std::string> lineFiles = {"blue", "brown","green","orange","pink","purple","red","yellow"};
+    std::vector<std::string> lineFiles = {
+            "blue",
+            "brown",
+            "green",
+            "orange",
+            "pink",
+            "purple",
+            "red",
+            "yellow"
+    };
 
-    Line blueLine = Line("blue");
-    Line brownLine = Line("brown");
-    Line greenLine = Line("green");
-    Line orangeLine = Line("orange");
-    Line pinkLine = Line("pink");
-    Line purpleLine = Line("purple");
-    Line redLine = Line("red");
-    Line yellowLine = Line("yellow");
-
-    std::vector<Line> lines = {blueLine,brownLine,greenLine,orangeLine,pinkLine,purpleLine,redLine,yellowLine};
-//    std::cout << lines.at(0).getLineName()<<std::endl;
-
-
+    std::vector<Line> lines;
+    std::set<std::string> allStations;
     std::ifstream infile;
     std::string line;
 
-    int lineCounter = 0;
     for(std::string s:lineFiles){
-
+//        std::cout<<s<<std::endl;
+        Line tempLine(s);
         int terminalCounter = 0;
+
         std::string currFile = "../lines/" + s;
-//        std::cout<<currFile<<std::endl;
         infile.open(currFile);
 
-//        long line_count = std::count(
-//                std::istream_iterator<char>(infile),
-//                std::istream_iterator<char>(),
-//                '\n');
-//        lines[lineCounter].addLineStation(Station("Howard", true, true));
+        int numOfLinesInFile = 0;
+        while (std::getline(infile, line)) {
+            ++numOfLinesInFile;
+        }
+        infile.close();
+        infile.open(currFile);
+
 
         while(getline(infile, line))
         {
-//            std::cout<<line<<std::endl;
-//            long line_count = 10;
-//            std::cout << line << std::endl;
-//            blueLine.addLineStation(Station(line, line.find("(T)") != std::string::npos,
-//                                                      (terminalCounter == line_count || terminalCounter == 0)));
-//            std::cout<<lines[lineCounter].getLineName()<<std::endl;
-            Station tempStation = Station(line,false,false);
-            lines[lineCounter].addLineStation(tempStation);
-
+            bool tempBool;
+            std::string t = "(T)";
+            if(line.find(t) != std::string::npos){
+                line.erase(line.length()-3, t.length());
+                tempBool = true;
+            } else {
+                tempBool = false;
+            }
+            Station tempStation = Station(line, tempBool,(terminalCounter==0 || terminalCounter== numOfLinesInFile-1));
+            allStations.insert(line);
+            tempLine.addLineStation(tempStation);
+            terminalCounter++;
         }
-        lineCounter+=1;
+
+        lines.push_back(tempLine);
         infile.close();
         infile.clear();
     }
 
-    blueLine.printLineStations();
+    Cta cta = Cta(lines);
+    cta.setAllStations(allStations);
 
-//    std::cout<<blueLine.printLineStations()<<std::endl;
+//    cta.printLines();
 
-//    std::cout<<blueLine.printLineStations()<<std::endl;
-//    std::ifstream infile("/Users/hgoscenski/ClionProjects/hgoscenski-COMP271-FinalProject/lines/blue");
-//    std::ifstream lineInput;
-//    std::string line;
+    std::cout<<cta.findLineStation("nahhh") << " || " << cta.findLineStation("Loyola") <<std::endl;
 //
-//    lineInput.open("../lines/blue");
-//    while(getline(lineInput, line))
-//    {
-//        std::cout<<line<<"-->";
+//    for(std::string s:allStations){
+//        std::cout<<s<<std::endl;
 //    }
-//    lineInput.close();
-//    lineInput.clear();
-//
-//    std::cout<< std::endl;
-//
-//    lineInput.open("../lines/brown");
-//    while(getline(lineInput, line))
-//    {
-//        std::cout<<line<<"-->";
-//    }
-//    std::cout<<"\n";
-//    lineInput.close();
-//    lineInput.clear();
-
-    Cta cta = Cta();
 
     return 0;
 }
