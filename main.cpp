@@ -3,6 +3,17 @@
 #include <set>
 #include "Cta.h"
 
+int stationLineInfo(Cta cta, std::string searchStation){
+    if(cta.findLineStation(searchStation)){
+        std::cout << searchStation << " is a valid station and is on the " << cta.determineLine(searchStation).getLineName() << " line." << std::endl;
+    } else {
+        std::cout << "Error: " << searchStation << " is not a station at all!" << std::endl;
+    }
+    return 0;
+}
+
+
+
 int main() {
     std::vector<std::string> lineFiles = {
             "blue",
@@ -59,14 +70,6 @@ int main() {
 
     Cta cta = Cta(lines);
     cta.setAllStations(allStations);
-
-//    cta.printLines();
-
-    std::cout<<cta.findLineStation("nahhh") << " || " << cta.findLineStation("Loyola") <<std::endl;
-//
-//    for(std::string s:allStations){
-//        std::cout<<s<<std::endl;
-//    }
 
     return 0;
 }

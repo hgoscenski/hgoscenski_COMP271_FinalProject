@@ -18,6 +18,7 @@ public:
     void setAllStations(std::set<std::string> stationSet);
     std::vector<Line> getLines();
     std::string printLines();
+    Line determineLine(std::string searchingStationName);
     Cta();
     bool findLineStation(std::string searchingStationName);
 
@@ -26,6 +27,7 @@ private:
     std::vector<Line> lines;
     std::vector<Station> transferLines;
     std::set<std::string> allStationsSet;
+
 };
 
 

@@ -14,6 +14,7 @@ class Line {
 public:
     std::string getLineName();
     void addLineStation(Station lineStation);
+    bool stationOnLine(std::string searchingStation);
     std::string printLineStations();
     bool isEqual(Line otherLine);
     Line(std::string name);

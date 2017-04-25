@@ -11,7 +11,14 @@ Line::Line(std::string name) {
     lineName = name;
 }
 
-
+bool Line::stationOnLine(std::string searchingStation){
+    for(std::vector<Station>::iterator it = lineStations.begin(); it != lineStations.end(); it++){
+        if(it->getStationName() == searchingStation){
+            return true;
+        }
+    }
+    return false;
+}
 
 bool Line::isEqual(Line otherLine) {
     return lineName == otherLine.getLineName();
