@@ -1,7 +1,3 @@
-//
-// Created by hgoscenski on 4/7/17.
-//
-
 #include "Station.h"
 #include "Cta.h"
 

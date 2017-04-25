@@ -17,6 +17,7 @@ public:
     std::string printLineStations();
     bool isEqual(Line otherLine);
     Line(std::string name);
+    Line();
 
 private:
     std::string lineName;
