@@ -16,7 +16,9 @@ public:
     void addLineStation(Station lineStation);
     bool stationOnLine(std::string searchingStation);
     std::string printLineStations(std::string startStation, std::string endStation);
+    void createTransferVector();
     std::string printLineStations();
+    std::vector<Station> getTransferVector();
     bool isEqual(Line otherLine);
     Line(std::string name);
     Line();
@@ -24,7 +26,7 @@ public:
 private:
     std::string lineName;
     std::vector<Station> lineStations;
-    std::list<Station> lineStationsOrdered;
+    std::vector<Station> transferStations;
 };
 
 #endif //HGOSCENSKI_COMP271_FINALPROJECT_LINE_H

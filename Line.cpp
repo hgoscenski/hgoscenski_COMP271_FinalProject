@@ -61,7 +61,7 @@ std::string Line::printLineStations(std::string startStation, std::string endSta
             std::cout << lineStations[l].getStationName() << std::endl;
         }
     }
-    std::cout << endStationIndex << " || " << startStationIndex << std::endl;
+//    std::cout << endStationIndex << " || " << startStationIndex << std::endl;
 
 
 //    auto startIndex = 0;
@@ -88,9 +88,18 @@ std::string Line::printLineStations(std::string startStation, std::string endSta
 ////            stationsString += it->getStationName() + " \n";
 ////        }
 //    }
-    return stationsString;
+    return "";
 
 }
+
+//int Line::findStationIndex(std::string station){
+//    for(int i = 0; i < lineStations.size(); i++){
+//        if(lineStations[i].getStationName() == station){
+//            return i;
+//        }
+//    }
+//    return -1;
+//}
 
 std::string Line::printLineStations() {
     std::cout << lineName << std::endl;
@@ -110,4 +119,16 @@ std::string Line::printLineStations() {
 
 Line::Line(){
 //    do nothing
+}
+
+void Line::createTransferVector() {
+    for(int i = 0; i < lineStations.size(); i++){
+        if(lineStations[i].isTransferStation()){
+            transferStations.push_back(lineStations[i]);
+        }
+    }
+}
+
+std::vector<Station> Line::getTransferVector() {
+    return transferStations;
 }

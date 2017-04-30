@@ -3,5 +3,5 @@ project(hgoscenski_COMP271_FinalProject)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES main.cpp Station.cpp Station.h Line.cpp Line.h Cta.cpp Cta.h TransferStation.cpp TransferStation.h)
+set(SOURCE_FILES main.cpp Station.cpp Station.h Line.cpp Line.h Cta.cpp Cta.h)
 add_executable(hgoscenski_COMP271_FinalProject ${SOURCE_FILES} Station.cpp Station.h Line.cpp Line.h)
