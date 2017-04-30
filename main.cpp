@@ -3,15 +3,6 @@
 #include <set>
 #include "Cta.h"
 
-//int stationLineInfo(Cta cta, std::string searchStation){
-//    if(cta.findLineStation(searchStation)){
-//        std::cout << searchStation << " is a valid station and is on the " << cta.determineLine(searchStation).getLineName() << " line." << std::endl;
-//    } else {
-//        std::cout << "Error: " << searchStation << " is not a station at all!" << std::endl;
-//    }
-//    return 0;
-//}
-
 void printOptions(){
     std::cout << "Please Enter one of the following options:"<<std::endl;
     std::cout << "1. See if Station is in the CTA \n2. See what Line a Station is Part of \n3. Print all stations \n4. Find a path between 2 stations \n5. Quit \n" << std::endl;
@@ -74,23 +65,6 @@ int main() {
 
     Cta cta = Cta(lines);
     cta.setAllStations(allStations);
-//
-//    std::cout << cta.findLineStation("Howard") << std::endl;
-//
-//    cta.stationToStationPathFinding("Loyola", "Howard");
-//
-//    cta.stationToStationPathFinding("Howard", "Dempster-Skokie");
-//
-//    std::cout << cta.findIntersection(lines[6], lines[7]).getStationName() << std::endl;
-//
-//    cta.stationToStationPathFinding("Loyola", "95th/Dan Ryan");
-
-//    std::cout << "Loyola Station is on the " << cta.determineLine("Loyola").getLineName() << " Line" << std::endl;
-//    std::cout << "O'Hare Station is on the " <<  cta.determineLine("O'Hare").getLineName() << " Line" << std::endl;
-
-//    cta.printLines();
-//    lines[0].printLineStations();
-
 //    User input loop
 
     bool stop = false;
