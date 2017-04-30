@@ -35,7 +35,18 @@ Line Cta::determineLine(std::string searchingStationName){
     }
 //     there should never actually be one of these, since all requests to this function should pass through findLineStation
     return Line("fakeline");
+}
 
+int Cta::stationToStationPathFinding(std::string startStation, std::string endStation){
+    if(findLineStation(startStation) && findLineStation(endStation)){
+        Line startLine = determineLine(startStation);
+        Line endLine = determineLine(endStation);
+        if(startLine.isEqual(endLine)){
+            startLine.printLineStations(startStation, endStation);
+        }
+    } else {
+        std::cout << "Both stations are not legitimate stations on the CTA, please verify they are the correct stations and try again." << std::endl;
+    }
 }
 
 bool Cta::findLineStation(std::string searchingStationName){
@@ -56,6 +67,7 @@ std::string Cta::printLines(){
     for(std::vector<Line>::iterator it = lines.begin(); it != lines.end(); ++it) {
         std::cout<< it->getLineName()<<"\n"<< it->printLineStations()<< std::endl;
     }
+    return "";
 }
 
 Cta::Cta(){

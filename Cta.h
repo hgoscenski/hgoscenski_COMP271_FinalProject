@@ -19,6 +19,7 @@ public:
     std::vector<Line> getLines();
     std::string printLines();
     Line determineLine(std::string searchingStationName);
+    int stationToStationPathFinding(std::string startStation, std::string endStation);
     Cta();
     bool findLineStation(std::string searchingStationName);
 
@@ -27,7 +28,6 @@ private:
     std::vector<Line> lines;
     std::vector<Station> transferLines;
     std::set<std::string> allStationsSet;
-
 };
 
 

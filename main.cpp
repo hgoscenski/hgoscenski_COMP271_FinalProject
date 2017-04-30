@@ -12,6 +12,10 @@ int stationLineInfo(Cta cta, std::string searchStation){
     return 0;
 }
 
+void printOptions(){
+    std::cout << "Please Enter one of the following options:"<<std::endl;
+    std::cout << "1. See if Station is in the CTA \n 2. See what Line a Station is Part of \n 3. Print all stations \n 4. Quit \n" << std::endl;
+}
 
 
 int main() {
@@ -43,16 +47,16 @@ int main() {
         while (std::getline(infile, line)) {
             ++numOfLinesInFile;
         }
+
         infile.close();
         infile.open(currFile);
-
 
         while(getline(infile, line))
         {
             bool tempBool;
             std::string t = "(T)";
             if(line.find(t) != std::string::npos){
-                line.erase(line.length()-3, t.length());
+                line.erase(line.length()-4, t.length());
                 tempBool = true;
             } else {
                 tempBool = false;
@@ -70,6 +74,50 @@ int main() {
 
     Cta cta = Cta(lines);
     cta.setAllStations(allStations);
+
+    cta.stationToStationPathFinding("Granville", "Morse");
+
+    cta.stationToStationPathFinding("Morse", "Granville");
+
+//    std::cout << lines[0].printLineStations(Station("O'Hare", true, true), Station("Grand", false, false)) << std::endl;
+
+//    std::cout << "Loyola Station is on the " << cta.determineLine("Loyola").getLineName() << " Line" << std::endl;
+//    std::cout << "O'Hare Station is on the " <<  cta.determineLine("O'Hare").getLineName() << " Line" << std::endl;
+
+//    cta.printLines();
+//    lines[0].printLineStations();
+
+//    bool stop = false;
+//    std::cout << "Welcome to the CTA line finder" << std::endl;
+//    while(!stop){
+//        std::string option;
+//        printOptions();
+//        std::getline(std::cin, option);
+//        if(option == "1"){
+//            std::cout<<"Please enter a station name" << std::endl;
+//            std::getline(std::cin, option);
+//            if(cta.findLineStation(option)){
+//                std::cout<< option << " is a CTA station" << std::endl;
+//            }
+//        }
+//        if(option == "2"){
+//            std::cout<<"Please enter a station name" << std::endl;
+//            std::getline(std::cin, option);
+//            if(cta.findLineStation(option)){
+//                std::cout<<option << " is part of "<< cta.determineLine(option).getLineName() << " line"  << std::endl;
+//            }
+//        }
+//        if(option == "3"){
+////            std::cout << cta.printLines() << std::endl;
+//            cta.printLines();
+//        }
+//        if(option == "4"){
+//            stop = true;
+//        }
+//
+//    }
+
+
 
     return 0;
 }

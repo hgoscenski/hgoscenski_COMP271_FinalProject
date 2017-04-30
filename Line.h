@@ -15,6 +15,7 @@ public:
     std::string getLineName();
     void addLineStation(Station lineStation);
     bool stationOnLine(std::string searchingStation);
+    std::string printLineStations(std::string startStation, std::string endStation);
     std::string printLineStations();
     bool isEqual(Line otherLine);
     Line(std::string name);
@@ -22,10 +23,8 @@ public:
 
 private:
     std::string lineName;
-    std::vector<Station>* pointer;
     std::vector<Station> lineStations;
     std::list<Station> lineStationsOrdered;
 };
-
 
 #endif //HGOSCENSKI_COMP271_FINALPROJECT_LINE_H
